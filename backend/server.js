@@ -11,22 +11,24 @@ const app = express();
 app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // Parse cookies
 
-const allowedOrigins = [
-   process.env.FRONTEND_URL,
-];
-
-// CORS configuration
-app.use(cors({
-   origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-         callback(null, true);
-      } else {
-         callback(new Error("Not allowed by CORS"));
-      }
-   },
-   credentials: true, // Allow credentials (cookies) with cross-origin requests
-   allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+if (process.env.NODE_ENV === "development") {
+   console.log("development")
+   const allowedOrigins = [
+      process.env.FRONTEND_URL,
+   ];
+   app.use(cors({
+      origin: function (origin, callback) {
+         if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+         } else {
+            callback(new Error("Not allowed by CORS"));
+         }
+      },
+      credentials: true,
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+   }));
+}
 
 // Serve static image files
 app.use('/api/images', express.static('images'));
@@ -42,6 +44,16 @@ app.use("/api/markets", require("./routes/marketRoutes"));
 
 // Endpoint to check if server is online
 app.use('/online', (req, res) => { return res.status(200).send('Server is online') })
+
+if (process.env.NODE_ENV === "production") {
+   console.log("production")
+   app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+   app.get("*", (req, res) => {
+      if (req.path.startsWith("/api")) return; // Prevents API routes from being overridden
+      res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+   });
+}
 
 // Start Server
 const PORT = process.env.PORT || 5000;
