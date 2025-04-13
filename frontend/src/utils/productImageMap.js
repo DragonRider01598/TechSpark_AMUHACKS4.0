@@ -1,29 +1,58 @@
 // frontend/src/utils/productImageMap.js
 const productImageMap = {
-    // Vegetables
-    'tomato': '/product-images/tomato.jpg',
-    'tamatar': '/product-images/tomato.jpg',
-    'potato': '/product-images/potato.png',
-    'aalu': '/product-images/potato.png',
-    'onion': '/product-images/onion.png',
-    'pyaaz': '/product-images/onion.png',
-    
-    // Fruits
-    'apple': '/product-images/apple.png',
-    'seb': '/product-images/apple.png',
-    'banana': '/product-images/banana.png',
-    'kela': '/product-images/banana.png',
-    
-    // Dairy
-    'milk': '/product-images/milk.png',
-    'doodh': '/product-images/milk.png',
-    
-    // Grains
-    'rice': '/product-images/rice.png',
-    'chawal': '/product-images/rice.png',
-    'wheat': '/product-images/wheat.png',
-    'gehun': '/product-images/wheat.png'
-  };
+  // Vegetables
+  'beetroot': '/product-images/Beetroot.jpeg',
+  'broccoli': '/product-images/Broccoli.jpeg',
+  'cabbage': '/product-images/Cabbage.jpeg',
+  'capsicum': '/product-images/Capsicum.jpeg',
+  'carrot': '/product-images/Carrot.jpeg',
+  'cauliflower': '/product-images/Cauliflower.jpeg',
+  'cucumber': '/product-images/Cucumber.jpeg',
+  'garlic': '/product-images/Garlic.jpeg',
+  'okra': '/product-images/Okra.jpeg',
+  'onion': '/product-images/Onion.jpeg',
+  'peas': '/product-images/Peas.jpeg',
+  'potato': '/product-images/Potato.jpeg',
+  'pumpkin': '/product-images/Pumpkin.jpeg',
+  'raddish': '/product-images/Raddish.jpeg',
+  'tomato': '/product-images/Tomato.jpeg',
+  'lettuce': '/product-images/Lettuce.jpeg',
+
+  // Fruits
+  'apple': '/product-images/Apple.jpeg',
+  'banana': '/product-images/Banana.jpeg',
+  'cherry': '/product-images/Cherry.jpeg',
+  'coconut': '/product-images/Coconut.jpeg',
+  'grapes': '/product-images/Grapes.jpeg',
+  'guava': '/product-images/Guava.jpeg',
+  'kiwi': '/product-images/Kiwi.jpeg',
+  'lychee': '/product-images/Lychee.jpeg',
+  'mango': '/product-images/Mango.jpeg',
+  'orange': '/product-images/Orange.jpeg',
+  'papaya': '/product-images/Papaya.jpeg',
+  'peach': '/product-images/Peach.jpeg',
+  'pineapple': '/product-images/Pineapple.jpeg',
+  'plum': '/product-images/Plum.jpeg',
+  'pomegranate': '/product-images/Pomegranate.jpeg',
+  'rasberry': '/product-images/Rasberry.jpeg',
+  'strawberry': '/product-images/Strawberry.jpeg',
+  'watermelon': '/product-images/Watermelon.jpeg',
+
+  // Dairy
+  'butter': '/product-images/Butter.jpeg',
+  'curd': '/product-images/Curd.jpeg',
+  'ghee': '/product-images/Ghee.jpeg',
+  'milk': '/product-images/Milk.jpeg',
+  'paneer': '/product-images/Paneer.jpeg',
+  'icecream': '/product-images/Icecream.jpeg',
+
+  // Grains & Others
+  'maida': '/product-images/Maida.jpeg',
+  'pulses': '/product-images/Pulses.jpeg',
+  'rice': '/product-images/Rice.jpeg',
+  'wheat': '/product-images/Wheat.jpeg'
+};
+
   
   export const getProductImage = (productName) => {
     const normalizedName = productName.toLowerCase().trim();
