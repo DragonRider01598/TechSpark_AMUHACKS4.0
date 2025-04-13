@@ -12,7 +12,7 @@ product: Translate to English (e.g., tamatar → tomato)
 
 price: Numeric only (e.g., "sau" → 100)
 
-unit: Standard unit like "kg", "litre", "piece"
+unit: Standard unit like "kg", "Liter", "Dozen"
 
 category: Choose from ["Vegetables", "Fruits", "Dairy", "Grains"] based on the product
 

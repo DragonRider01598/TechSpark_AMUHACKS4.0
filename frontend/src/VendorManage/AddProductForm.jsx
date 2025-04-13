@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaMicrophone } from "react-icons/fa";
 import { getProductImage } from '../utils/productImageMap';
 
@@ -11,6 +11,8 @@ const AddProductForm = ({
   fetchProducts,
   transcript
 }) => {
+
+  const [isListening, setIsListening] = useState(false);
 
   useEffect(() => {
     if (newProduct.name && !newProduct.images) {
@@ -33,6 +35,13 @@ const AddProductForm = ({
     }
   };
 
+  const handleSpeechButtonClick = () => {
+    setIsListening(true);
+    handleSpeechInput(setNewProduct, newProduct, () => {
+      setIsListening(false);
+    });
+  }
+
   return (
     <div className="bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-lg w-full max-w-lg border border-[#f9e79f] mt-4">
       <h2 className="text-2xl font-semibold mb-4 text-center text-yellow-900">Add a Product</h2>
@@ -46,12 +55,25 @@ const AddProductForm = ({
 
       
 
-      <div className="flex justify-center mb-4">
+      {/* <div className="flex justify-center mb-4">
         <button
           onClick={() => handleSpeechInput(setNewProduct, newProduct)}
           className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-300"
         >
           <FaMicrophone /> Speak
+        </button>
+      </div> */}
+
+<div className="flex justify-center mb-4">
+        <button
+          onClick={handleSpeechButtonClick}
+          className={`flex items-center gap-2 px-4 py-2 rounded-full transition duration-300 ${
+            isListening 
+              ? 'bg-red-600 text-white hover:bg-red-700' 
+              : 'bg-yellow-600 text-white hover:bg-yellow-700'
+          }`}
+        >
+          <FaMicrophone /> {isListening ? 'Listening...' : 'Speak'}
         </button>
       </div>
 
@@ -78,8 +100,8 @@ const AddProductForm = ({
           className="p-2 border rounded-lg w-full bg-white/40 text-yellow-900 focus:outline-none focus:ring-2 focus:ring-[#f9e79f] backdrop-blur-md"
         >
           <option value="kg">Kg</option>
-          <option value="liter">Liter</option>
-          <option value="dozen">Dozen</option>
+          <option value="Liter">Liter</option>
+          <option value="Dozen">Dozen</option>
         </select>
 
         <select
@@ -120,6 +142,7 @@ const AddProductForm = ({
             onChange={handleImageChange}
             className="p-2 border rounded-lg w-full bg-white/40 text-yellow-900 focus:outline-none focus:ring-2 focus:ring-[#f9e79f] backdrop-blur-md"
           />
+
           {newProduct.mappedImage && !newProduct.images && (
             <div className="mt-2">
               <p className="text-sm text-yellow-700">

@@ -287,46 +287,77 @@ const VendorDashboard = () => {
     khatam: "out of stock",
   };
 
-  const handleSpeechInput = (setNewProduct, newProduct) => {
+  // const handleSpeechInput = (setNewProduct, newProduct) => {
+  //   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  //   // recognition.lang = "en-US";
+  //   recognition.lang = "hi-IN";
+  //   recognition.interimResults = false;
+  //   recognition.maxAlternatives = 1;
+
+  //   recognition.onresult = async (event) => {
+  //     const transcript = event.results[0][0].transcript.toLowerCase();
+  //     setTranscript(transcript);
+  //     console.log("Transcript:", transcript);
+
+  //     const parsed = await extractProductDetails(transcript);
+  //     // const words = transcript.split(" ");
+  //     // let tempProduct = { ...newProduct };
+  //     // words.forEach((word) => {
+  //     //   console.log("Processing word:", word);
+
+  //     //   if (!isNaN(parseInt(word))) {
+  //     //     tempProduct.price = word;
+  //     //   }
+
+  //     //   if (keywordMap[word]) {
+  //     //     const mapped = keywordMap[word];
+
+  //     //     if (typeof mapped === "object") {
+  //     //       tempProduct.name = mapped.name;
+  //     //       tempProduct.category = mapped.category;
+  //     //     } else if (["kg", "liter", "dozen"].includes(mapped)) {
+  //     //       tempProduct.unit = mapped;
+  //     //     } else if (typeof mapped === "number") {
+  //     //       tempProduct.stock = "in stock";
+  //     //     } else if (mapped === "out of stock") {
+  //     //       tempProduct.stock = "out of stock";
+  //     //     }
+  //     //   }
+  //     // });
+  //     // console.log("Updated Product Object: ", tempProduct);
+  //     // setNewProduct(tempProduct);
+
+  //     const updatedProduct = {
+  //       ...newProduct,
+  //       name: parsed.product || "",
+  //       price: parsed.price || "",
+  //       unit: parsed.unit || "kg",
+  //       stock: parsed.stock || "in stock",
+  //       category: parsed.category || ""
+  //     };
+
+  //     console.log("Gemini Parsed Product:", updatedProduct);
+  //     setNewProduct(updatedProduct);
+  //   };
+
+  //   recognition.onerror = (event) => {
+  //     console.error("Speech recognition error", event.error);
+  //   };
+
+  //   recognition.start();
+  // };
+  const handleSpeechInput = (setNewProduct, newProduct, onComplete) => {
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    // recognition.lang = "en-US";
     recognition.lang = "hi-IN";
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
-
+  
     recognition.onresult = async (event) => {
       const transcript = event.results[0][0].transcript.toLowerCase();
       setTranscript(transcript);
       console.log("Transcript:", transcript);
-
+  
       const parsed = await extractProductDetails(transcript);
-      // const words = transcript.split(" ");
-      // let tempProduct = { ...newProduct };
-      // words.forEach((word) => {
-      //   console.log("Processing word:", word);
-
-      //   if (!isNaN(parseInt(word))) {
-      //     tempProduct.price = word;
-      //   }
-
-      //   if (keywordMap[word]) {
-      //     const mapped = keywordMap[word];
-
-      //     if (typeof mapped === "object") {
-      //       tempProduct.name = mapped.name;
-      //       tempProduct.category = mapped.category;
-      //     } else if (["kg", "liter", "dozen"].includes(mapped)) {
-      //       tempProduct.unit = mapped;
-      //     } else if (typeof mapped === "number") {
-      //       tempProduct.stock = "in stock";
-      //     } else if (mapped === "out of stock") {
-      //       tempProduct.stock = "out of stock";
-      //     }
-      //   }
-      // });
-      // console.log("Updated Product Object: ", tempProduct);
-      // setNewProduct(tempProduct);
-
       const updatedProduct = {
         ...newProduct,
         name: parsed.product || "",
@@ -335,18 +366,24 @@ const VendorDashboard = () => {
         stock: parsed.stock || "in stock",
         category: parsed.category || ""
       };
-
+  
       console.log("Gemini Parsed Product:", updatedProduct);
       setNewProduct(updatedProduct);
+      if (onComplete) onComplete();
     };
-
+  
     recognition.onerror = (event) => {
       console.error("Speech recognition error", event.error);
+      if (onComplete) onComplete();
     };
-
+  
+    recognition.onend = () => {
+      if (onComplete) onComplete();
+    };
+  
     recognition.start();
   };
-
+  
   const vendorData = {
     name: "Raj Traders",
     recentProducts: [
