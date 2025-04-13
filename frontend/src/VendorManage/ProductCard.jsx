@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Card component for displaying individual product information
+// Shows product image, name, price, and stock status
 const ProductCard = ({ product, BACKEND_URL, openModal }) => {
   return (
     <div className="relative">

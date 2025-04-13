@@ -9,6 +9,8 @@ import toast from 'react-hot-toast';
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
+// Vendor registration form
+// Handles new vendor signup and market association
 const ShopRegister = () => {
 
    const { authUser, authenticateUser } = useAuthStore();

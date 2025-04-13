@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Table view component for displaying products in a tabular format
+// Provides a structured view of product inventory
 const TableView = ({ products, vendorId, marketId }) => {
   return (
     <div className="w-full max-w-4xl bg-white/40 backdrop-blur-md rounded-lg shadow-lg p-6 relative">

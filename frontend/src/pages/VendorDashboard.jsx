@@ -16,6 +16,8 @@ import DashboardStats from "../VendorManage/DashboardStats";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
+// Main vendor dashboard page
+// Manages product inventory, market data, and vendor operations
 const VendorDashboard = () => {
   const categories = ["Fruits", "Vegetables", "Dairy", "Grains"];
   const [products, setProducts] = useState([]);
@@ -173,9 +175,6 @@ const VendorDashboard = () => {
     }
   };
 
-  // const handlePriceChange = (e) => {
-  //   setSelectedPrice(e.target.value === "" ? selectedProduct.price : e.target.value);
-  // };
   const handlePriceChange = (e) => {
     const value = e.target.value;
     // Only allow numbers and empty string
@@ -189,35 +188,6 @@ const VendorDashboard = () => {
     setSelectedStock(e.target.value);
   };
 
-
-
-  // const handleStockUpdate = async () => {
-  //   if (!selectedProduct) return;
-
-  //   try {
-  //     const response = await fetch(`${BACKEND_URL}/products/update-stock/${selectedProduct._id}`, {
-  //       method: "PUT",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         stock: selectedStock,
-  //         price: selectedPrice ?? selectedProduct.price,
-  //       }),
-  //     });
-
-  //     if (!response.ok) {
-  //       toast.error("Failed to update stock");
-  //       throw new Error("Failed to update stock");
-  //     }
-
-  //     toast.success("Updated successfully");
-  //     console.log("Stock updated successfully");
-
-  //     closeModal();
-  //     await fetchProducts(); // Add await here
-  //   } catch (error) {
-  //     console.error("Error updating stock:", error);
-  //   }
-  // };
   const handleStockUpdate = async () => {
     if (!selectedProduct) return;
 
@@ -286,66 +256,7 @@ const VendorDashboard = () => {
     sau: 100,
     khatam: "out of stock",
   };
-
-  // const handleSpeechInput = (setNewProduct, newProduct) => {
-  //   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  //   // recognition.lang = "en-US";
-  //   recognition.lang = "hi-IN";
-  //   recognition.interimResults = false;
-  //   recognition.maxAlternatives = 1;
-
-  //   recognition.onresult = async (event) => {
-  //     const transcript = event.results[0][0].transcript.toLowerCase();
-  //     setTranscript(transcript);
-  //     console.log("Transcript:", transcript);
-
-  //     const parsed = await extractProductDetails(transcript);
-  //     // const words = transcript.split(" ");
-  //     // let tempProduct = { ...newProduct };
-  //     // words.forEach((word) => {
-  //     //   console.log("Processing word:", word);
-
-  //     //   if (!isNaN(parseInt(word))) {
-  //     //     tempProduct.price = word;
-  //     //   }
-
-  //     //   if (keywordMap[word]) {
-  //     //     const mapped = keywordMap[word];
-
-  //     //     if (typeof mapped === "object") {
-  //     //       tempProduct.name = mapped.name;
-  //     //       tempProduct.category = mapped.category;
-  //     //     } else if (["kg", "liter", "dozen"].includes(mapped)) {
-  //     //       tempProduct.unit = mapped;
-  //     //     } else if (typeof mapped === "number") {
-  //     //       tempProduct.stock = "in stock";
-  //     //     } else if (mapped === "out of stock") {
-  //     //       tempProduct.stock = "out of stock";
-  //     //     }
-  //     //   }
-  //     // });
-  //     // console.log("Updated Product Object: ", tempProduct);
-  //     // setNewProduct(tempProduct);
-
-  //     const updatedProduct = {
-  //       ...newProduct,
-  //       name: parsed.product || "",
-  //       price: parsed.price || "",
-  //       unit: parsed.unit || "kg",
-  //       stock: parsed.stock || "in stock",
-  //       category: parsed.category || ""
-  //     };
-
-  //     console.log("Gemini Parsed Product:", updatedProduct);
-  //     setNewProduct(updatedProduct);
-  //   };
-
-  //   recognition.onerror = (event) => {
-  //     console.error("Speech recognition error", event.error);
-  //   };
-
-  //   recognition.start();
-  // };
+  
   const handleSpeechInput = (setNewProduct, newProduct, onComplete) => {
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.lang = "hi-IN";
@@ -383,7 +294,7 @@ const VendorDashboard = () => {
   
     recognition.start();
   };
-  
+
   const vendorData = {
     name: "Raj Traders",
     recentProducts: [

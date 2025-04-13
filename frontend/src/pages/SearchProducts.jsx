@@ -17,6 +17,8 @@ const mapOptions = {
     zoomControl: true,
 };
 
+// Product search and filtering interface
+// Allows users to find products by name, category, or market
 const SearchProducts = () => {
     const [products, setProducts] = useState([]);
     const [productName, setProductName] = useState("");

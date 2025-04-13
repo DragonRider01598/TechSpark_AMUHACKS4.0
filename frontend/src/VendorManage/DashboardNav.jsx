@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaPlus, FaBox, FaTable } from "react-icons/fa";
 
+// Navigation component for vendor dashboard
+// Handles switching between different views (products, stats, etc.)
 const DashboardNav = ({ view, setView }) => {
   return (
     <div className="flex gap-6 mb-8">

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
+// Location selection interface
+// Allows users to choose and set their market location
+
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY  // Replace with your actual API key
 
 const mapContainerStyle = {

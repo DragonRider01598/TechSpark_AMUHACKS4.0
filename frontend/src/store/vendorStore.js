@@ -1,3 +1,5 @@
+// Vendor state management
+// Manages vendor data and market associations
 import { create } from "zustand";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 

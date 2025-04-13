@@ -1,3 +1,5 @@
+// Authentication state management
+// Handles user login, logout, and session persistence
 import { create } from 'zustand'
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 

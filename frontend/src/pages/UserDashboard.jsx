@@ -1,3 +1,5 @@
+// User dashboard for browsing and purchasing products
+// Displays available markets and product listings
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Background from "./Background";

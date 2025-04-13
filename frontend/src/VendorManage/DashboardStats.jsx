@@ -1,6 +1,8 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
+// Displays vendor dashboard statistics and analytics
+// Shows sales data, recent products, and market performance
 const DashboardStats = ({ vendorData }) => {
   return (
     <div className="p-6 bg-white/40 backdrop-blur-md min-h-screen rounded-lg shadow-lg w-1/2">

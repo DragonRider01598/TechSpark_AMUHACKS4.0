@@ -1,3 +1,5 @@
+// Frequently Asked Questions page
+// Displays common questions and answers about the platform
 import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import DashboardImage from "../assets/dashboard.png";

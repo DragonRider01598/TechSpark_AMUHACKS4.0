@@ -1,4 +1,6 @@
 // frontend/src/utils/productImageMap.js
+// Maps product names to their corresponding image paths
+// Provides default images for products in the inventory
 const productImageMap = {
   // Vegetables
   'beetroot': '/product-images/Beetroot.jpeg',

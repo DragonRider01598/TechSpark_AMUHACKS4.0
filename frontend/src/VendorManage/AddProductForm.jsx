@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { FaMicrophone } from "react-icons/fa";
 import { getProductImage } from '../utils/productImageMap';
 
-const AddProductForm = ({ 
-  newProduct, 
-  setNewProduct, 
-  addProduct, 
+const AddProductForm = ({
+  newProduct,
+  setNewProduct,
+  addProduct,
   handleSpeechInput,
-  categories ,
+  categories,
   fetchProducts,
   transcript
 }) => {
@@ -46,32 +46,19 @@ const AddProductForm = ({
     <div className="bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-lg w-full max-w-lg border border-[#f9e79f] mt-4">
       <h2 className="text-2xl font-semibold mb-4 text-center text-yellow-900">Add a Product</h2>
 
-
       {transcript && (
         <div className="mb-4 p-3 bg-yellow-100 rounded-lg text-yellow-900">
           <p className="text-center font-medium">Recognized: "{transcript}"</p>
         </div>
       )}
 
-      
-
-      {/* <div className="flex justify-center mb-4">
-        <button
-          onClick={() => handleSpeechInput(setNewProduct, newProduct)}
-          className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-300"
-        >
-          <FaMicrophone /> Speak
-        </button>
-      </div> */}
-
-<div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-4">
         <button
           onClick={handleSpeechButtonClick}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full transition duration-300 ${
-            isListening 
-              ? 'bg-red-600 text-white hover:bg-red-700' 
+          className={`flex items-center gap-2 px-4 py-2 rounded-full transition duration-300 ${isListening
+              ? 'bg-red-600 text-white hover:bg-red-700'
               : 'bg-yellow-600 text-white hover:bg-yellow-700'
-          }`}
+            }`}
         >
           <FaMicrophone /> {isListening ? 'Listening...' : 'Speak'}
         </button>
@@ -125,14 +112,7 @@ const AddProductForm = ({
           ))}
         </select>
 
-        {/* <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setNewProduct({ ...newProduct, images: e.target.files[0] })}
-          className="p-2 border rounded-lg w-full bg-white/40 text-yellow-900 focus:outline-none focus:ring-2 focus:ring-[#f9e79f] backdrop-blur-md"
-        /> */}
-
-<div className="col-span-2">
+        <div className="col-span-2">
           <label className="block text-sm font-medium text-yellow-900 mb-2">
             Product Image
           </label>
@@ -148,9 +128,9 @@ const AddProductForm = ({
               <p className="text-sm text-yellow-700">
                 Default image will be used: {newProduct.name}
               </p>
-              <img 
-                src={newProduct.mappedImage} 
-                alt="Default product" 
+              <img
+                src={newProduct.mappedImage}
+                alt="Default product"
                 className="w-20 h-20 object-cover mt-2 rounded-lg"
               />
             </div>

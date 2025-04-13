@@ -1,3 +1,5 @@
+// User registration page
+// Creates new user accounts and profiles
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaCamera } from 'react-icons/fa';

@@ -1,3 +1,5 @@
+// User authentication login page
+// Handles user login and session management
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Background from './Background_main';

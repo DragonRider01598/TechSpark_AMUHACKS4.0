@@ -7,6 +7,8 @@ import { useAuthStore } from '../store/useAuthStore'
 import toast from "react-hot-toast";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
+// Main navigation component
+// Provides site-wide navigation and user menu
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);

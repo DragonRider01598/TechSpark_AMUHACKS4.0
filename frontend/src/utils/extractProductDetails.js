@@ -1,3 +1,5 @@
+// Extracts product details from voice input
+// Processes and structures product information for database storage
 export const extractProductDetails = async (inputText) => {
    const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
