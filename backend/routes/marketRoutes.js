@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getAllMarkets, getVendorDetailsByProductId } = require('../controllers/marketController');
+const { getVendorDetailsByProductId } = require('../controllers/marketController');
 
-router.get('/', getAllMarkets);
-router.get('/id/:productId', getVendorDetailsByProductId);
+router.get('/id/:productId', getVendorDetailsByProductId); // GET vendor details by product ID
 
 module.exports = router;

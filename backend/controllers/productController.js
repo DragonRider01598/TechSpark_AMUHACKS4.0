@@ -1,6 +1,7 @@
 const Product = require('../models/Product');
 
-exports.createProduct = async (req, res) => {
+// create a product
+const createProduct = async (req, res) => {
   try {
     const { vendorId, stock, name, marketId,category, price, unit } = req.body;
 
@@ -14,7 +15,8 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-exports.updateProduct = async (req, res) => {
+// update a product
+const updateProduct = async (req, res) => {
   try {
       const { productId } = req.params;
       const { stock, price } = req.body; // Get new stock value from request body
@@ -40,8 +42,8 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-
-exports.getProducts = async (req, res) => {
+// get all products
+const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
@@ -49,3 +51,5 @@ exports.getProducts = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+module.exports = { createProduct, updateProduct, getProducts };

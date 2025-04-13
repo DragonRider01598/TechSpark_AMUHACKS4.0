@@ -1,9 +1,8 @@
-const dotenv = require('dotenv');
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+require('dotenv').config();
 
-dotenv.config();
-
+// Cookie options for storing JWT token
 const cookieOptions = {
   httpOnly: true,
   secure: true, //process.env.NODE_ENV === 'production',
@@ -11,6 +10,7 @@ const cookieOptions = {
   maxAge: 5 * 60 * 60 * 1000,
 };
 
+// Register new user
 const register = async (req, res) => {
   try {
     const { username, name, email, password } = req.body;
@@ -28,6 +28,7 @@ const register = async (req, res) => {
   }
 };
 
+// Login user
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -46,6 +47,7 @@ const login = async (req, res) => {
   }
 };
 
+// Logout user by clearing the token cookie
 const logout = async (req, res) => {
   try {
     res.cookie('authToken', '', { maxAge: 1 });
@@ -55,6 +57,7 @@ const logout = async (req, res) => {
   }
 };
 
+// Authenticate user based on JWT token
 const authenticate = (req, res) => {
   const token = req.cookies.authToken;
   if (!token) {

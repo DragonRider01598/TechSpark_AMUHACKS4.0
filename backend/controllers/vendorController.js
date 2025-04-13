@@ -2,7 +2,7 @@ const Vendor = require('../models/Vendor');
 const Market = require('../models/Market');
 
 
-exports.createVendor = async (req, res) => {
+const createVendor = async (req, res) => {
   try {
     const { userId, marketId, shopName, address, latitude, longitude, phone } = req.body;
 
@@ -22,7 +22,6 @@ exports.createVendor = async (req, res) => {
       // images: req.files?.map(file => file.path)
     };
 
-    console.log(obj);
     const vendor = new Vendor(obj);
     await vendor.save();
 
@@ -34,7 +33,7 @@ exports.createVendor = async (req, res) => {
 
 
 
-exports.getVendors = async (req, res) => {
+const getVendors = async (req, res) => {
   try {
     const vendors = await Vendor.find();
     // const vendors = await Vendor.find().populate('Product');
@@ -44,7 +43,7 @@ exports.getVendors = async (req, res) => {
   }
 };
 
-exports.getMarkets = async (req, res) => {
+const getMarkets = async (req, res) => {
   try {
     const markets = await Market.find();
     res.json(markets);
@@ -53,7 +52,7 @@ exports.getMarkets = async (req, res) => {
   }
 };
 
-exports.rateVendor = async (req, res) => {
+const rateVendor = async (req, res) => {
   try {
     const { userId, vendorId, rating } = req.body;
     const existingRating = await Rating.findOne({ userId, vendorId });
@@ -69,3 +68,5 @@ exports.rateVendor = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+module.exports = { createVendor, rateVendor, getVendors, getMarkets };

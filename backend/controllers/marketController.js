@@ -1,18 +1,6 @@
-const Market = require('../models/Market');
 const Product = require('../models/Product');
-const Vendor = require('../models/Vendor');
-const User = require('../models/User');
 
-exports.getAllMarkets = async (req, res) => {
-    try {
-        const markets = await Market.find();
-        res.status(200).json(markets);
-    } catch (error) {
-        res.status(500).json({ message: 'Error fetching markets', error });
-    }
-};
-
-exports.getVendorDetailsByProductId = async (req, res) => {
+const getVendorDetailsByProductId = async (req, res) => {
   try {
     const { productId } = req.params;
 
@@ -43,3 +31,5 @@ exports.getVendorDetailsByProductId = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+module.exports = { getVendorDetailsByProductId };

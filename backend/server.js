@@ -8,13 +8,14 @@ require("dotenv").config();
 const app = express();
 
 // Middleware
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.json()); // Parse JSON bodies
+app.use(cookieParser()); // Parse cookies
 
 const allowedOrigins = [
    process.env.FRONTEND_URL,
 ];
 
+// CORS configuration
 app.use(cors({
    origin: function (origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
@@ -23,10 +24,11 @@ app.use(cors({
          callback(new Error("Not allowed by CORS"));
       }
    },
-   credentials: true,
+   credentials: true, // Allow credentials (cookies) with cross-origin requests
    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+// Serve static image files
 app.use('/api/images', express.static('images'));
 
 // Connect Database
@@ -38,6 +40,7 @@ app.use("/api/vendors", require("./routes/vendorRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/markets", require("./routes/marketRoutes"));
 
+// Endpoint to check if server is online
 app.use('/online', (req, res) => { return res.status(200).send('Server is online') })
 
 // Start Server

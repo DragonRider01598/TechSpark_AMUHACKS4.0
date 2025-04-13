@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema({
   vendorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Vendor', required: true },
   marketId: { type: mongoose.Schema.Types.ObjectId, ref: 'Market', required: true },
   name: { type: String, required: true },
-  category: { type: String, required: true },
+  category: { type: String, required: true }, // e.g., Fruits, Vegetables, Dairy, Grains
   price: { type: Number, required: true },
   unit: { type: String, required: true }, // e.g., kg, liter, dozen
   stock: {
